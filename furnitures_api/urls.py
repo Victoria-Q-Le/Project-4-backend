@@ -7,7 +7,10 @@ urlpatterns = [
 
 
     path('api/carts', views.CartList.as_view(), name='cart_list'),
-    path('api/carts/<int:pk>', views.CartDetail.as_view(), name='cart_detail'), 
+    path('api/carts/<int:pk>', views.CartDetail.as_view(), name='cart_detail'),
+
+    path('api/reviews', views.ReviewList.as_view(), name='review_list'),
+    path('api/reviews/<int:pk>', views.ReviewDetail.as_view(), name='review_detail'),
 
 
 ]

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .serializers import FurnitureSerializer, CartSerializer
-from .models import Furniture, Cart
+from .serializers import FurnitureSerializer, CartSerializer, ReviewSerializer
+from .models import Furniture, Cart, Review
 
 class FurnitureList(generics.ListCreateAPIView):
     queryset = Furniture.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
@@ -19,3 +19,12 @@ class CartList(generics.ListCreateAPIView):
 class CartDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cart.objects.all().order_by('id')
     serializer_class = CartSerializer
+
+#####Review#####
+class ReviewList(generics.ListCreateAPIView):
+    queryset = Review.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
+    serializer_class = ReviewSerializer # tell django what serializer to use
+
+class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects.all().order_by('id')
+    serializer_class = ReviewSerializer
