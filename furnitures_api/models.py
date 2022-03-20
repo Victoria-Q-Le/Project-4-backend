@@ -11,10 +11,11 @@ class Furniture(models.Model):
     price = models.DecimalField(max_digits = 7, decimal_places = 2, null = True, blank = True)
     quantity = models.IntegerField(default = 1)
     availability = models.BooleanField()
+    orderQuantity = models.IntegerField(default = 0)
+    user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
 
     def __str__(self): #this will display the items in the database by the name instead of just the furniture 1, furniture 2, etc...
         return self.name
-
 
 class Review (models.Model):
     product = models.ForeignKey(Furniture, on_delete = models.SET_NULL, null = True)
@@ -27,12 +28,18 @@ class Review (models.Model):
         return str(self.product)
 
 
-class Cart (models.Model):
+class Cart(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
-    product = models.ForeignKey(Furniture, on_delete = models.SET_NULL, null = True)
-    qty = models.IntegerField()
-    price  = models.DecimalField(max_digits = 7, decimal_places = 2, null = True, blank = True)
-    img = models.TextField (null = True, blank = True)
+    name = models.CharField(max_length = 32, default = 'NA')
+    img = models.ImageField(null = True, blank = True )
+    imgURL = models.CharField(max_length = 50, null = True, blank = True)
+    color = models.CharField(max_length = 20, default = 'NA')
+    category = models.CharField(max_length = 32, default = 'NA')
+    price = models.IntegerField(default = 0)
+    orderQuantity = models.IntegerField(default = 1)
+    quantity = models.IntegerField(default = 10)
+    availability = models.BooleanField(default = False)
+
 
     def __str__(self):
         return str(self.user)
