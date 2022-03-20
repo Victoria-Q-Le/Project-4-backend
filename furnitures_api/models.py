@@ -34,7 +34,7 @@ class Cart(models.Model):
     imgURL = models.CharField(max_length = 50, null = True, blank = True)
     price = models.IntegerField(default = 0)
     orderQuantity = models.IntegerField(default = 1)
-    quantity = models.IntegerField(default = 10)
+    quantity = models.ForeignKey(Furniture, on_delete = models.SET_NULL, null = True)
     availability = models.BooleanField(default = True)
     color = models.CharField(max_length = 20, null = True, blank = True)
     category = models.CharField(max_length = 32, null = True, blank = True)
