@@ -30,15 +30,16 @@ class Review (models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
-    name = models.CharField(max_length = 32, default = 'NA')
     img = models.ImageField(null = True, blank = True )
     imgURL = models.CharField(max_length = 50, null = True, blank = True)
-    color = models.CharField(max_length = 20, default = 'NA')
-    category = models.CharField(max_length = 32, default = 'NA')
     price = models.IntegerField(default = 0)
     orderQuantity = models.IntegerField(default = 1)
     quantity = models.IntegerField(default = 10)
-    availability = models.BooleanField(default = False)
+    availability = models.BooleanField(default = True)
+    color = models.CharField(max_length = 20, null = True, blank = True)
+    category = models.CharField(max_length = 32, null = True, blank = True)
+    name = models.CharField(max_length = 32, null = True, blank = True)
+
 
 
     def __str__(self):
